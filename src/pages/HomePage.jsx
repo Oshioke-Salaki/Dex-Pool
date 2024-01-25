@@ -43,9 +43,12 @@ function HomePage() {
                   onChange={(e) => setChain(e.target.value)}
                 >
                   <option value="eth-mainnet" selected>
-                    Ethereum Mainnet
+                    Ethereum
                   </option>
-                  <option value="optimism-mainnet">Optimism Mainnet</option>
+                  <option value="optimism-mainnet">Optimism</option>
+                  <option value="matic-mainnet">Matic</option>
+                  <option value="bsc-mainnet">BNB Smart Chain</option>
+                  <option value="avalanche-mainnet">Avalanche</option>
                 </select>
               </div>
               <div className="form-control">
