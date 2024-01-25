@@ -4,7 +4,7 @@ import { GoldRushProvider, XYKPoolDetailView } from "@covalenthq/goldrush-kit";
 
 function ResultsPage() {
   return (
-    <div className="bg-bgMain bg-no-repeat bg-cover bg-center min-h-screen relative">
+    <div className="bg-bgMain bg-no-repeat bg-cover bg-center min-h-screen relative pb-10">
       <button className="fixed top-[40px] left-[40px]">
         <img src={backBtn} alt="" />
       </button>
