@@ -13,23 +13,58 @@ function HomePage() {
   const { dispatch } = useQuery();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const fetchPools = async () => {
-  //     try {
-  //       setIsLoadingPools(true);
-  //       const client = new CovalentClient("cqt_rQkVVrThdHDvQ4MkG7br9J8BhrW4");
-  //       const resp = await client.XykService.getPools(chain, dex);
-  //       setSamplePools(resp);
-  //     } catch (err) {
-  //       console.log(err);
-  //     } finally {
-  //       setIsLoadingPools(false);
-  //     }
-  //   };
+  const abortController = new AbortController();
 
-  //   fetchPools();
-  //   console.log(samplePools);
-  // }, [chain, dex, samplePools]);
+  const fetchPools = async () => {
+    try {
+      setIsLoadingPools(true);
+      const client = new CovalentClient("cqt_rQkVVrThdHDvQ4MkG7br9J8BhrW4");
+      const resp = await client.XykService.getPools(chain, dex, {
+        signal: abortController.signal,
+      });
+      setSamplePools(resp);
+      console.log(samplePools);
+    } catch (err) {
+      if (err.name === "AbortError") {
+        // Ignore if the request was aborted
+        console.log("Fetch aborted");
+      } else {
+        console.log(err);
+      }
+    } finally {
+      setIsLoadingPools(false);
+    }
+  };
+
+  useEffect(() => {
+    const abortController = new AbortController();
+    const fetchPools2 = async () => {
+      try {
+        setIsLoadingPools(true);
+        const client = new CovalentClient("cqt_rQkVVrThdHDvQ4MkG7br9J8BhrW4");
+        const resp = await client.XykService.getPools(chain, dex, {
+          signal: abortController.signal,
+        });
+        setSamplePools(resp);
+        console.log(samplePools);
+      } catch (err) {
+        if (err.name === "AbortError") {
+          // Ignore if the request was aborted
+          console.log("Fetch aborted");
+        } else {
+          console.log(err);
+        }
+      } finally {
+        setIsLoadingPools(false);
+      }
+    };
+    fetchPools2();
+
+    // Cleanup function
+    return () => {
+      abortController.abort();
+    };
+  }, [chain, dex, samplePools]);
 
   const dexs = [
     {
@@ -85,7 +120,10 @@ function HomePage() {
                   id="chain-name"
                   value={chain}
                   className="text-black"
-                  onChange={(e) => setChain(e.target.value)}
+                  onChange={async (e) => {
+                    setChain(() => e.target.value);
+                    fetchPools();
+                  }}
                 >
                   <option value="eth-mainnet">Ethereum</option>
                   <option value="matic-mainnet">Matic</option>
@@ -98,9 +136,12 @@ function HomePage() {
                 <select
                   name="dex"
                   id="dex"
-                  value={dexs.filter((curr) => curr.chain === chain)[0].dexs[0]}
+                  value={dex}
                   className="text-black"
-                  onChange={(e) => setDex(e.target.value)}
+                  onChange={async (e) => {
+                    setDex(() => e.target.value);
+                    fetchPools();
+                  }}
                 >
                   {dexs
                     .filter((curr) => curr.chain === chain)[0]
