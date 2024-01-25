@@ -36,7 +36,7 @@ function ResultsPage() {
             <h2 className="mb-[14px] text-lg font-extrabold text-white">
               Results
             </h2>
-            <div className="w-[80%] rounded-lg bg-white p-8">
+            <div className="w-[55%] rounded-lg bg-white p-8">
               <GoldRushProvider
                 apikey={"cqt_rQkVVrThdHDvQ4MkG7br9J8BhrW4"}
                 mode="light"
