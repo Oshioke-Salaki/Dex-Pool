@@ -24,15 +24,15 @@ function HomePage() {
   }
 
   return (
-    <div className="bg-bgMain bg-no-repeat bg-cover bg-center min-h-screen">
+    <div className="min-h-screen bg-bgMain bg-cover bg-center bg-no-repeat">
       <Navbar />
-      <main className="pt-[38px] flex justify-center">
-        <div className="w-[650px]">
-          <h2 className="text-white text-lg font-extrabold mb-[14px]">
+      <main className="flex justify-center px-[28px] pt-[38px]">
+        <div className="w-full sm:w-[650px]">
+          <h2 className="mb-[14px] text-lg font-extrabold text-white">
             Filters
           </h2>
           <form className="w-full ">
-            <div className="form-box bg-white rounded-lg py-6 px-[30px]">
+            <div className="form-box rounded-lg bg-white px-[30px] py-6">
               <div className="form-control">
                 <label htmlFor="chain-name">Chain</label>
                 <select
@@ -67,9 +67,9 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="text-center mt-6">
+            <div className="mt-6 text-center">
               <label
-                className="text-white text-base font-bold mb-4"
+                className="mb-4 text-base font-bold text-white"
                 htmlFor="pool-address"
               >
                 Pool Address
@@ -82,13 +82,13 @@ function HomePage() {
                 value={poolAddress}
                 placeholder="Enter the pool address"
                 onChange={(e) => setPoolAddress(e.target.value)}
-                className="bg-white text-black border-[#c4c4c4] mt-4 border-[0.5px] border-solid w-full p-4 rounded-lg outline-none"
+                className="mt-4 w-full rounded-lg border-[0.5px] border-solid border-[#c4c4c4] bg-white p-4 text-black outline-none"
               />
             </div>
 
             <button
               type="submit"
-              className="w-full border-[0.5px] border-solid border-[#c4c4c4] bg-[#121212] py-4 text-white text-xl font-bold rounded-lg mt-6"
+              className="mt-6 w-full rounded-lg border-[0.5px] border-solid border-[#c4c4c4] bg-[#121212] py-4 text-xl font-bold text-white"
               onClick={handleSubmit}
             >
               Query data

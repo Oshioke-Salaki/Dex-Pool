@@ -1,6 +1,6 @@
 function Navbar() {
   return (
-    <nav className="text-white text-2xl font-extrabold px-[100px] py-7 border-b-solid border-b-[0.5px] border-b-white">
+    <nav className="border-b-solid border-b-[0.5px] border-b-white px-8 py-3 text-2xl font-extrabold text-white sm:px-[100px] sm:py-7">
       <h2>DexPool</h2>
     </nav>
   );
