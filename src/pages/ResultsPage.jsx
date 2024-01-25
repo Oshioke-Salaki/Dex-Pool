@@ -13,19 +13,19 @@ function ResultsPage() {
     navigate("/");
   }
   return (
-    <div className="bg-bgMain bg-no-repeat bg-cover bg-center min-h-screen relative pb-10">
-      <button className="fixed top-[40px] left-[40px]" onClick={handleGoHome}>
+    <div className="relative min-h-screen bg-bgMain bg-cover bg-center bg-no-repeat pb-10">
+      <button className="fixed left-[40px] top-[40px]" onClick={handleGoHome}>
         <img src={backBtn} alt="" />
       </button>
-      <main className="pt-[100px] flex justify-center flex-col gap-y-4 items-center">
+      <main className="flex flex-col items-center justify-center gap-y-4 pt-[100px]">
         {!dex_name || !pool_address || !chain_name ? (
-          <div className="flex flex-col items-center text-center pt-[100px]">
+          <div className="flex flex-col items-center pt-[100px] text-center">
             <h3 className="text-[32px] font-semibold text-white">
               Hey go back to the home page
               <br /> to query your data.
             </h3>
             <button
-              className="w-[300px] border-[0.5px] border-solid border-[#c4c4c4] bg-[#121212] py-4 text-white text-xl font-bold rounded-lg mt-6"
+              className="mt-6 w-[300px] rounded-lg border-[0.5px] border-solid border-[#c4c4c4] bg-[#121212] py-4 text-xl font-bold text-white"
               onClick={handleGoHome}
             >
               Go to home
@@ -33,14 +33,15 @@ function ResultsPage() {
           </div>
         ) : (
           <>
-            <h2 className="text-white text-lg font-extrabold mb-[14px]">
+            <h2 className="mb-[14px] text-lg font-extrabold text-white">
               Results
             </h2>
-            <div className="w-[80%]">
+            <div className="w-[80%] rounded-lg bg-white p-8">
               <GoldRushProvider
                 apikey={"cqt_rQkVVrThdHDvQ4MkG7br9J8BhrW4"}
-                mode="dark"
-                color="emerald"
+                mode="light"
+                color="cyan"
+                border_radius="medium"
               >
                 <XYKPoolDetailView
                   chain_name={chain_name}
